@@ -9,7 +9,7 @@ class LZWencode{
 	    return;
 	}
 	try{
-	    InputOutput io = new InputOutput(args[0]);
+	    EncoderIO io = new EncoderIO(args[0]);
 	    Trie t = new Trie(io);
 	    t.run();
 
@@ -28,14 +28,14 @@ class LZWencode{
  * and
  * outputs to file
  */
-class InputOutput{
+class EncoderIO{
 
     private FileInputStream fis;
     private FileWriter fw;
     private int Data;
     private int counter; //used to determine high or low of byte
 
-    public InputOutput(String file){
+    public EncoderIO(String file){
 	try{
 	    fis = new FileInputStream(file);
 	    int d = file.lastIndexOf('.');
@@ -94,13 +94,13 @@ class InputOutput{
  */
 class Trie{
     
-    private InputOutput io;
+    private EncoderIO io;
     private TrieNode head;
     private int nibble;
     private int index;
 
     
-    public Trie(InputOutput io){
+    public Trie(EncoderIO io){
 	this.io = io;
 	index = 0;
 	for(int i = 0; i <= 15; i++){
